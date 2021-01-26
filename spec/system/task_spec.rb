@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Task', type: :system do
-  let(:project) { FactoryBot.create(:project) }
-  let(:task) { FactoryBot.create(:task, project_id: project.id) }
+  let(:project) { create(:project) }
+  let(:task) { create(:task, project_id: project.id) }
   describe 'Task一覧' do
     context '正常系' do
       it '一覧ページにアクセスした場合、Taskが表示されること' do
@@ -50,7 +50,7 @@ RSpec.describe 'Task', type: :system do
   end
 
   describe 'Task編集' do
-    let(:done_task) { FactoryBot.create(:task, project_id: project.id,
+    let(:done_task) { create(:task, project_id: project.id,
                                         status: :done,
                                         completion_date: Time.current.yesterday) }
     context '正常系' do
@@ -84,7 +84,7 @@ RSpec.describe 'Task', type: :system do
   end
 
   describe 'Task削除' do
-    let!(:task) { FactoryBot.create(:task, project_id: project.id)}
+    let!(:task) { create(:task, project_id: project.id)}
     context '正常系' do
       it 'Taskが削除されること' do
         visit project_tasks_path(project)
