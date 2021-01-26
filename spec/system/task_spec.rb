@@ -50,8 +50,7 @@ RSpec.describe 'Task', type: :system do
   end
 
   describe 'Task編集' do
-    let(:done_task) { create(:task, status: :done,
-                                    completion_date: Time.current.yesterday) }
+    let(:done_task) { create(:task, :done) }
     context '正常系' do
       it 'Taskを編集した場合、一覧画面で編集後の内容が表示されること' do
         visit edit_project_task_path(project, task)
