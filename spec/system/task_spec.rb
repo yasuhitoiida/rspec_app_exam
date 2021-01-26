@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Task', type: :system do
   let(:project) { create(:project) }
-  let(:task) { create(:task, project_id: project.id) }
+  let(:task) { create(:task) }
   describe 'Task一覧' do
     context '正常系' do
       it '一覧ページにアクセスした場合、Taskが表示されること' do
@@ -50,9 +50,8 @@ RSpec.describe 'Task', type: :system do
   end
 
   describe 'Task編集' do
-    let(:done_task) { create(:task, project_id: project.id,
-                                        status: :done,
-                                        completion_date: Time.current.yesterday) }
+    let(:done_task) { create(:task, status: :done,
+                                    completion_date: Time.current.yesterday) }
     context '正常系' do
       it 'Taskを編集した場合、一覧画面で編集後の内容が表示されること' do
         visit edit_project_task_path(project, task)
@@ -84,7 +83,7 @@ RSpec.describe 'Task', type: :system do
   end
 
   describe 'Task削除' do
-    let!(:task) { create(:task, project_id: project.id)}
+    let!(:task) { create(:task)}
     context '正常系' do
       it 'Taskが削除されること' do
         visit project_tasks_path(project)
